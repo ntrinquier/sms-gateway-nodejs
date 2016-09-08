@@ -2,12 +2,12 @@
   "name": "sms-gateway-nodejs",
   "version": "0.0.1-0",
   "description": "A library to interact with SMS Gateway API.",
-  "main": "lib/sms-gateway-nodejs.min.js",
+  "main": "lib/index.js",
   "scripts": {
     "lint": "./node_modules/.bin/eslint src",
     "test": "echo \"No test specified yet\" && exit 0",
     "prebuild": "npm install",
-    "build": "./node_modules/.bin/babel --presets es2015 -d lib/ src/",
+    "build": "rm -rf lib/* && ./node_modules/.bin/babel --presets es2015 -d lib/ src/",
     "preversion": "npm test && npm run lint",
     "version": "npm run build && git add -A -f ./lib",
     "postversion": "git push && git push --tags && rm -rf ./lib"
