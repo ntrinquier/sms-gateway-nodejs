@@ -10,7 +10,7 @@
     "build": "rm -rf lib/* && ./node_modules/.bin/babel --presets es2015 -d lib/ src/",
     "preversion": "npm test && npm run lint",
     "version": "npm run build && git add -A -f ./lib",
-    "postversion": "git push && git push --tags && rm -rf ./lib"
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
