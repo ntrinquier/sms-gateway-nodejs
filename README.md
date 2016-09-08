@@ -38,14 +38,58 @@ smsGateway = require('sms-gateway-nodejs')('ntrinquier@provider.com', 'p4ssw0rd'
 * <a href="#listOfMessages">`listOfMessages`</a>
 * <a href="#fetchSingleMessage">`fetchSingleMessage`</a>
 * <a href="#sendMessageToNumber">`sendMessageToNumber`</a>
-* <a href="#sendMessageToManyNumbers">`sendMessageToManyNumbers`</a>
+* <a href="#sendMessageToNumbers">`sendMessageToNumbers`</a>
 * <a href="#sendMessageToContact">`sendMessageToContact`</a>
-* <a href="#sendMessageToManyContacts">`sendMessageToManyContacts`</a>
-* <a href="#sendMessageToManyRecipients">`sendMessageToManyRecipients`</a>
+* <a href="#sendMessageToContacts">`sendMessageToContacts`</a>
+* <a href="#sendMessagesToRecipients">`sendMessagesToRecipients`</a>
 
 <!-- /div -->
 
 ## `“Messages” Methods`
+
+<!-- div -->
+
+### <a id="listOfMessages"></a>`listOfMessages(page)`
+
+Get a list of the messages.
+
+#### Arguments
+1. `page` *(String)*: The page number
+
+#### Example
+```js
+smsGateway.message.listOfMessages(2)
+.then((response) => {
+  // do something with response
+})
+.catch((error) => {
+  // handle error
+})
+```
+
+<!-- /div -->
+
+<!-- div -->
+
+### <a id="fetchSingleMessage"></a>`fetchSingleMessage(id)`
+
+Get a specific message.
+
+#### Arguments
+1. `id` *(String)*: The message ID
+
+#### Example
+```js
+smsGateway.message.fetchSingleMessage(2182)
+.then((response) => {
+  // do something with response
+})
+.catch((error) => {
+  // handle error
+})
+```
+
+<!-- /div -->
 
 <!-- div -->
 
@@ -62,7 +106,120 @@ Send a message to a number.
 
 #### Example
 ```js
-smsGateway.message.sendMessageToNumber(device, number, message, sendAt, expiresAt)
+smsGateway.message.sendMessageToNumber('2012', '+33123456789', 'Hello world :)')
+.then((response) => {
+  // do something with response
+})
+.catch((error) => {
+  // handle error
+})
+```
+
+<!-- /div -->
+
+<!-- div -->
+
+### <a id="sendMessageToNumbers"></a>`sendMessageToNumbers(device, numbers, message, [sendAt], [expiresAt])`
+
+Send a message to numbers.
+
+#### Arguments
+1. `device` *(String)*: The ID of device you wish to send the message from
+2. `numbers` *(Array)*: The numbers to send the message to
+3. `message` *(String)*: The content of the message to be sent
+4. `[sendAt=undefined]` *(String)*: Time to send the message in Unix Time format
+5. `[expiresAt=undefined]` *(String)*: Time to give up trying to send the message at in Unix Time format
+
+#### Example
+```js
+smsGateway.message.sendMessageToNumbers('2012', ['+33123456789', '+33987654321'], 'Penguins rock!')
+.then((response) => {
+  // do something with response
+})
+.catch((error) => {
+  // handle error
+})
+```
+
+<!-- /div -->
+
+<!-- div -->
+
+### <a id="sendMessageToContact"></a>`sendMessageToContact(device, contact, message, [sendAt], [expiresAt])`
+
+Send a message to a contact.
+
+#### Arguments
+1. `device` *(String)*: The ID of device you wish to send the message from
+2. `contact` *(String)*: The contact to send the message to
+3. `message` *(String)*: The content of the message to be sent
+4. `[sendAt=undefined]` *(String)*: Time to send the message in Unix Time format
+5. `[expiresAt=undefined]` *(String)*: Time to give up trying to send the message at in Unix Time format
+
+#### Example
+```js
+smsGateway.message.sendMessageToContact('2012', '30', 'Hello world :)')
+.then((response) => {
+  // do something with response
+})
+.catch((error) => {
+  // handle error
+})
+```
+
+<!-- /div -->
+
+<!-- div -->
+
+### <a id="sendMessageToContacts"></a>`sendMessageToContacts(device, contacts, message, [sendAt], [expiresAt])`
+
+Send a message to contacts.
+
+#### Arguments
+1. `device` *(String)*: The ID of device you wish to send the message from
+2. `contacts` *(Array)*: The contacts to send the message to
+3. `message` *(String)*: The content of the message to be sent
+4. `[sendAt=undefined]` *(String)*: Time to send the message in Unix Time format
+5. `[expiresAt=undefined]` *(String)*: Time to give up trying to send the message at in Unix Time format
+
+#### Example
+```js
+smsGateway.message.sendMessageToContacts('2012', ['5', '30'], 'Penguins rock!')
+.then((response) => {
+  // do something with response
+})
+.catch((error) => {
+  // handle error
+})
+```
+
+<!-- /div -->
+
+<!-- div -->
+
+### <a id="sendMessagesToRecipients"></a>`sendMessagesToRecipients(data)`
+
+Send messages to numbers or contacts.
+
+#### Arguments
+1. `data` *(Array)*: Objects containing the messages to send, at the following format:
+  1. `device` *(String)*: The ID of device you wish to send the message from
+  2. `contact|number` *(String)*: The contact or number to send the message to
+  3. `message` *(String)*: The content of the message to be sent
+  4. `[sendAt=undefined]` *(String)*: Time to send the message in Unix Time format
+  5. `[expiresAt=undefined]` *(String)*: Time to give up trying to send the message at in Unix Time format
+
+#### Example
+```js
+smsGateway.message.sendMessageToContacts([{
+  device: '2190',
+  contact: '42',
+  message: 'Hi!',
+}, {
+  device: '2109',
+  number: '+33123456789',
+  message: 'Hello!',
+}])
 .then((response) => {
   // do something with response
 })
