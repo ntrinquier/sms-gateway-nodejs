@@ -62,7 +62,7 @@ Send a message to a number.
 
 #### Example
 ```js
-smsGateway.sendMessageToNumber(device, number, message, sendAt, expiresAt)
+smsGateway.message.sendMessageToNumber(device, number, message, sendAt, expiresAt)
 .then((response) => {
   // do something with response
 })
