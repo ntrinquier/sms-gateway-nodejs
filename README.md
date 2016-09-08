@@ -211,7 +211,7 @@ Send messages to numbers or contacts.
 
 #### Example
 ```js
-smsGateway.message.sendMessageToContacts([{
+smsGateway.message.sendMessagesToRecipients([{
   device: '2190',
   contact: '42',
   message: 'Hi!',
