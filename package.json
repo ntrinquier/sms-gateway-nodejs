@@ -1,6 +1,6 @@
 {
   "name": "sms-gateway-nodejs",
-  "version": "0.0.1-1",
+  "version": "0.0.1",
   "description": "A library to interact with SMS Gateway API.",
   "main": "lib/index.js",
   "scripts": {
