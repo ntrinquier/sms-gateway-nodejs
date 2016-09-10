@@ -33,6 +33,25 @@ smsGateway = require('sms-gateway-nodejs')('ntrinquier@provider.com', 'p4ssw0rd'
 
 <!-- div -->
 
+## `Contact`
+
+* <a href="#createContact">`createContact`</a>
+* <a href="#listOfContacts">`listOfContacts`</a>
+* <a href="#fetchSingleContact">`fetchSingleContact`</a>
+
+<!-- /div -->
+
+<!-- div -->
+
+## `Device`
+
+* <a href="#listOfDevices">`listOfDevices`</a>
+* <a href="#fetchSingleDevice">`fetchSingleDevice`</a>
+
+<!-- /div -->
+
+<!-- div -->
+
 ## `Messages`
 
 * <a href="#listOfMessages">`listOfMessages`</a>
@@ -42,6 +61,121 @@ smsGateway = require('sms-gateway-nodejs')('ntrinquier@provider.com', 'p4ssw0rd'
 * <a href="#sendMessageToContact">`sendMessageToContact`</a>
 * <a href="#sendMessageToContacts">`sendMessageToContacts`</a>
 * <a href="#sendMessagesToRecipients">`sendMessagesToRecipients`</a>
+
+<!-- /div -->
+
+## `“Contacts” Methods`
+
+<!-- div -->
+
+### <a id="createContact"></a>`createContact(page)`
+
+Create a contact.
+
+#### Arguments
+1. `name` *(String)*: The contact's name
+1. `number` *(String)*: The contact's number
+
+#### Example
+```js
+smsGateway.contact.createContact('Nicolas', '+33612121212')
+.then((response) => {
+  // do something with response
+})
+.catch((error) => {
+  // handle error
+})
+```
+
+<!-- /div -->
+
+<!-- div -->
+
+### <a id="listOfContacts"></a>`listOfContacts(page)`
+
+Get a list of the contacts.
+
+#### Arguments
+1. `page` *(String)*: The page number
+
+#### Example
+```js
+smsGateway.contact.listOfContacts(2)
+.then((response) => {
+  // do something with response
+})
+.catch((error) => {
+  // handle error
+})
+```
+
+<!-- /div -->
+
+<!-- div -->
+
+### <a id="fetchSingleContact"></a>`fetchSingleContact(id)`
+
+Get a specific contact.
+
+#### Arguments
+1. `id` *(String)*: The contact ID
+
+#### Example
+```js
+smsGateway.contact.fetchSingleContact(2182)
+.then((response) => {
+  // do something with response
+})
+.catch((error) => {
+  // handle error
+})
+```
+
+<!-- /div -->
+
+## `“Devices” Methods`
+
+<!-- div -->
+
+### <a id="listOfDevices"></a>`listOfDevices(page)`
+
+Get a list of the devices.
+
+#### Arguments
+1. `page` *(String)*: The page number
+
+#### Example
+```js
+smsGateway.device.listOfDevices(2)
+.then((response) => {
+  // do something with response
+})
+.catch((error) => {
+  // handle error
+})
+```
+
+<!-- /div -->
+
+<!-- div -->
+
+### <a id="fetchSingleDevice"></a>`fetchSingleDevice(id)`
+
+Get a specific device.
+
+#### Arguments
+1. `id` *(String)*: The device ID
+
+#### Example
+```js
+smsGateway.device.fetchSingleDevice(2182)
+.then((response) => {
+  // do something with response
+})
+.catch((error) => {
+  // handle error
+})
+```
 
 <!-- /div -->
 
