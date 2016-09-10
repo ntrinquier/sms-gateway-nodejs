@@ -8,7 +8,7 @@ module.exports = (emailAddress, password) => {
       return new Promise((resolve, reject) => {
         request({
           method: 'GET',
-          uri: endPointPrefix + '/messages',
+          uri: endPointPrefix + '/',
           json: true,
           qs: {
             email: emailAddress,
@@ -18,10 +18,8 @@ module.exports = (emailAddress, password) => {
         }, (error, response, body) => {
           if (error) {
             reject(error)
-          } else if (body.result.success.length) {
-            resolve(body.result.success[0])
-          } else if (body.result.fails.length) {
-            reject(body.result.fails)
+          } else if (body.result) {
+            resolve(body.result)
           } else {
             reject('Could not retrieve messages.')
           }
@@ -32,7 +30,7 @@ module.exports = (emailAddress, password) => {
       return new Promise((resolve, reject) => {
         request({
           method: 'GET',
-          uri: endPointPrefix + '/messages/view/' + id,
+          uri: endPointPrefix + '/view/' + id,
           json: true,
           qs: {
             email: emailAddress,
