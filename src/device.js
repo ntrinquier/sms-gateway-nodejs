@@ -1,19 +1,20 @@
-var request = require('request')
+const request = require('request');
 
-module.exports = (emailAddress, password) => {
-  let endPointPrefix = 'http://smsgateway.me/api/v3/devices'
+module.exports = (email, password) => {
+  const endPointPrefix = 'https://smsgateway.me/api/v3/devices'
 
   return {
     listOfDevices: (page) => {
       return new Promise((resolve, reject) => {
         request({
           method: 'GET',
-          uri: endPointPrefix + '/',
+          mode: 'no-cors',
+          uri: `${endPointPrefix}/`,
           json: true,
           qs: {
-            email: emailAddress,
-            password: password,
-            page: page,
+            email,
+            password,
+            page,
           },
         }, (error, response, body) => {
           if (error) {
@@ -30,11 +31,12 @@ module.exports = (emailAddress, password) => {
       return new Promise((resolve, reject) => {
         request({
           method: 'GET',
-          uri: endPointPrefix + '/view/' + id,
+          mode: 'no-cors',
+          uri: `${endPointPrefix}/view/${id}`,
           json: true,
           qs: {
-            email: emailAddress,
-            password: password,
+            email,
+            password,
           },
         }, (error, response, body) => {
           if (error) {

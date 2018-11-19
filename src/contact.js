@@ -1,20 +1,21 @@
-var request = require('request')
+const request = require('request');
 
-module.exports = (emailAddress, password) => {
-  let endPointPrefix = 'http://smsgateway.me/api/v3/contacts'
+module.exports = (email, password) => {
+  const endPointPrefix = 'https://smsgateway.me/api/v3/contacts'
 
   return {
     createContact: (name, number) => {
       return new Promise((resolve, reject) => {
         request({
           method: 'POST',
-          uri: endPointPrefix + '/create',
+          mode: 'no-cors',
+          uri: `${endPointPrefix}/create`,
           json: true,
           qs: {
-            email: emailAddress,
-            password: password,
-            name: name,
-            number: number,
+            email,
+            password,
+            name,
+            number,
           },
         }, (error, response, body) => {
           if (error) {
@@ -31,12 +32,13 @@ module.exports = (emailAddress, password) => {
       return new Promise((resolve, reject) => {
         request({
           method: 'GET',
-          uri: endPointPrefix + '/',
+          mode: 'no-cors',
+          uri: `${endPointPrefix}/`,
           json: true,
           qs: {
-            email: emailAddress,
-            password: password,
-            page: page,
+            email,
+            password,
+            page,
           },
         }, (error, response, body) => {
           if (error) {
@@ -53,11 +55,12 @@ module.exports = (emailAddress, password) => {
       return new Promise((resolve, reject) => {
         request({
           method: 'GET',
-          uri: endPointPrefix + '/view/' + id,
+          mode: 'no-cors',
+          uri: `${endPointPrefix}/view/${id}`,
           json: true,
           qs: {
-            email: emailAddress,
-            password: password,
+            email,
+            password,
           },
         }, (error, response, body) => {
           if (error) {

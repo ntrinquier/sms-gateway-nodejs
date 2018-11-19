@@ -1,19 +1,20 @@
-var request = require('request')
+const request = require('request');
 
-module.exports = (emailAddress, password) => {
-  let endPointPrefix = 'http://smsgateway.me/api/v3/messages'
+module.exports = (email, password) => {
+  const endPointPrefix = 'https://smsgateway.me/api/v3/messages'
 
   return {
     listOfMessages: (page) => {
       return new Promise((resolve, reject) => {
         request({
           method: 'GET',
-          uri: endPointPrefix + '/',
+          mode: 'no-cors',
+          uri: `${endPointPrefix}/`,
           json: true,
           qs: {
-            email: emailAddress,
-            password: password,
-            page: page,
+            email,
+            password,
+            page,
           },
         }, (error, response, body) => {
           if (error) {
@@ -30,11 +31,12 @@ module.exports = (emailAddress, password) => {
       return new Promise((resolve, reject) => {
         request({
           method: 'GET',
-          uri: endPointPrefix + '/view/' + id,
+          mode: 'no-cors',
+          uri: `${endPointPrefix}/view/${id}`,
           json: true,
           qs: {
-            email: emailAddress,
-            password: password,
+            email,
+            password,
           },
         }, (error, response, body) => {
           if (error) {
@@ -51,14 +53,15 @@ module.exports = (emailAddress, password) => {
       return new Promise((resolve, reject) => {
         request({
           method: 'POST',
-          uri: endPointPrefix + '/send',
+          mode: 'no-cors',
+          uri: `${endPointPrefix}/send`,
           json: true,
           qs: {
-            email: emailAddress,
-            password: password,
-            device: device,
-            number: number,
-            message: message,
+            email,
+            password,
+            device,
+            number,
+            message,
             send_at: sendAt,
             expires_at: expiresAt,
           },
@@ -75,18 +78,19 @@ module.exports = (emailAddress, password) => {
         })
       })
     },
-    sendMessageToNumbers: (device, numbers, message, sendAt, expiresAt) => {
+    sendMessageToNumbers: (device, number, message, sendAt, expiresAt) => {
       return new Promise((resolve, reject) => {
         request({
           method: 'POST',
-          uri: endPointPrefix + '/send',
+          mode: 'no-cors',
+          uri: `${endPointPrefix}/send`,
           json: true,
           qs: {
-            email: emailAddress,
-            password: password,
-            device: device,
-            number: numbers,
-            message: message,
+            email,
+            password,
+            device,
+            number,
+            message,
             send_at: sendAt,
             expires_at: expiresAt,
           },
@@ -107,14 +111,15 @@ module.exports = (emailAddress, password) => {
       return new Promise((resolve, reject) => {
         request({
           method: 'POST',
-          uri: endPointPrefix + '/send',
+          mode: 'no-cors',
+          uri: `${endPointPrefix}/send`,
           json: true,
           qs: {
-            email: emailAddress,
-            password: password,
-            device: device,
-            contact: contact,
-            message: message,
+            email,
+            password,
+            device,
+            contact,
+            message,
             send_at: sendAt,
             expires_at: expiresAt,
           },
@@ -131,18 +136,19 @@ module.exports = (emailAddress, password) => {
         })
       })
     },
-    sendMessageToContacts: (device, contacts, message, sendAt, expiresAt) => {
+    sendMessageToContacts: (device, contact, message, sendAt, expiresAt) => {
       return new Promise((resolve, reject) => {
         request({
           method: 'POST',
-          uri: endPointPrefix + '/send',
+          mode: 'no-cors',
+          uri: `${endPointPrefix}/send`,
           json: true,
           qs: {
-            email: emailAddress,
-            password: password,
-            device: device,
-            contact: contacts,
-            message: message,
+            email,
+            password,
+            device,
+            contact,
+            message,
             send_at: sendAt,
             expires_at: expiresAt,
           },
@@ -163,7 +169,8 @@ module.exports = (emailAddress, password) => {
       return new Promise((resolve, reject) => {
         request({
           method: 'POST',
-          uri: endPointPrefix + '/send',
+          mode: 'no-cors',
+          uri: `${endPointPrefix}/send`,
           json: true,
           form: data,
         }, (error, response, body) => {
